@@ -17,8 +17,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('papeis', 'PapelController')
+Route::apiResource('papeis', 'PapelController')
     ->parameters([
     'papeis' => 'papel'
-    ])
-    ->except(['create', 'edit']);
+    ]);
+
+Route::apiResource('projetos', 'ProjetoController');
+
+Route::post('projetos/{projeto}/associar', 'ProjetoController@associarUsuario');
