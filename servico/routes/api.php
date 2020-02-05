@@ -24,4 +24,6 @@ Route::apiResource('papeis', 'PapelController')
 
 Route::apiResource('projetos', 'ProjetoController');
 
+Route::apiResource('usuarios', 'UsuarioController');
+
 Route::post('projetos/{projeto}/associar', 'ProjetoController@associarUsuario');

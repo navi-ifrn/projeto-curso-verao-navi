@@ -17,9 +17,7 @@ class ProjetoController extends Controller
      */
     public function index()
     {
-        $projeto = Projeto::with('pesquisadores')->toSql();
-
-        return response()->json(Projeto::paginate(10));
+        return response()->json(Projeto::paginate(20));
     }
 
     /**

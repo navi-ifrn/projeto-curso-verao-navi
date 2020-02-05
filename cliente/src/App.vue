@@ -12,13 +12,13 @@
                             </div>
                             <div class="container-fluid mt-2">
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col-12">
                                         <CardPapeis />
                                     </div>
-                                    <div class="col">
+                                    <div class="col-12">
                                         <CardProjetos />
                                     </div>
-                                    <div class="col">
+                                    <div class="col-12">
                                         <CardUsuarios />
                                     </div>
                                 </div>
@@ -34,11 +34,12 @@
 <script>
 
 
-import Navbar from "./components/Layout/Navbar";
-import TopHeader from "./components/Layout/TopHeader";
-import CardPapeis from "./components/Cards/CardPapeis";
+import Navbar from "./components/Layout/Navbar"
+import TopHeader from "./components/Layout/TopHeader"
+import CardPapeis from "./components/Cards/CardPapeis"
 import CardProjetos from "./components/Cards/CardProjetos";
 import CardUsuarios from "./components/Cards/CardUsuarios";
+
 export default {
   name: 'app',
     components: {CardUsuarios, CardProjetos, CardPapeis, TopHeader, Navbar}

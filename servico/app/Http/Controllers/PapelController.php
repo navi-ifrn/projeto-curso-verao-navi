@@ -17,7 +17,7 @@ class PapelController extends Controller
      */
     public function index()
     {
-        return response()->json(Papel::all());
+        return response()->json(Papel::orderBy('nome')->paginate(20));
     }
 
     /**
