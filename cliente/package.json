@@ -8,7 +8,10 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "circle-progress": "^1.0.0",
     "core-js": "^3.4.4",
+    "sparkline": "^0.2.0",
+    "tabler-ui": "0.0.34",
     "vue": "^2.6.10"
   },
   "devDependencies": {
