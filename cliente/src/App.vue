@@ -13,28 +13,13 @@
                             <div class="container-fluid mt-2">
                                 <div class="row">
                                     <div class="col">
-                                        <div class="card">
-                                            <div class="card-status bg-teal"></div>
-                                            <div class="card-header">
-                                                <h3 class="card-title">Papéis</h3>
-                                            </div>
-                                        </div>
+                                        <CardPapeis />
                                     </div>
                                     <div class="col">
-                                        <div class="card">
-                                            <div class="card-status bg-purple"></div>
-                                            <div class="card-header">
-                                                <h3 class="card-title">Projetos</h3>
-                                            </div>
-                                        </div>
+                                        <CardProjetos />
                                     </div>
                                     <div class="col">
-                                        <div class="card">
-                                            <div class="card-status bg-green"></div>
-                                            <div class="card-header">
-                                                <h3 class="card-title">Usuários</h3>
-                                            </div>
-                                        </div>
+                                        <CardUsuarios />
                                     </div>
                                 </div>
                             </div>
@@ -51,9 +36,12 @@
 
 import Navbar from "./components/Layout/Navbar";
 import TopHeader from "./components/Layout/TopHeader";
+import CardPapeis from "./components/Cards/CardPapeis";
+import CardProjetos from "./components/Cards/CardProjetos";
+import CardUsuarios from "./components/Cards/CardUsuarios";
 export default {
   name: 'app',
-    components: {TopHeader, Navbar}
+    components: {CardUsuarios, CardProjetos, CardPapeis, TopHeader, Navbar}
 }
 </script>
 
