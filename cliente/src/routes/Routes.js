@@ -15,14 +15,17 @@ const router = new VueRouter({
     routes: [
         {
             path: '/',
+            name: 'home',
             component: Home
         },
         {
             path: '/papeis',
+            name: 'papeis',
             component: Papeis
         },
         {
             path: '/papeis/create',
+            name: 'papeis.create',
             component: PapeisCreate
         },
         {
@@ -32,10 +35,22 @@ const router = new VueRouter({
         },
         {
             path: '/projetos',
+            name: 'projetos',
+            component: Projetos
+        },
+        {
+            path: '/projetos/:id/edit',
+            name: 'projetos.edit',
             component: Projetos
         },
         {
             path: '/usuarios',
+            name: 'usuarios',
+            component: Usuarios
+        },
+        {
+            path: '/usuarios/:id/edit',
+            name: 'usuarios.edit',
             component: Usuarios
         },
 

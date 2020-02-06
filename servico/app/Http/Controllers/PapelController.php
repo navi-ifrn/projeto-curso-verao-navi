@@ -72,10 +72,13 @@ class PapelController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Papel $papel
-     * @return Response
+     * @return JsonResponse
+     * @throws \Exception
      */
     public function destroy(Papel $papel)
     {
-        //
+        $papel->delete();
+
+        return response()->json($papel);
     }
 }

@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 <template>
     <div class="table-responsive push">
         <table class="table table-striped">
@@ -16,12 +17,10 @@
                             {{ item[chave] }}
                         </td>
                         <td>
-                            <router-link :to="{ name: 'papeis.edit', params: { id: item.id} }" class="btn btn-outline-warning btn-sm">
+                            <router-link :to="{ name: `${recurso}.edit`, params: { id: item.id} }" class="btn btn-outline-warning btn-sm">
                                 Editar
                             </router-link>
-                            <router-link to="/papeis/edit" class="ml-2 btn btn-outline-danger btn-sm">
-                                Excluir
-                            </router-link>
+                            <button @click="confirmarExclusao(item.id)" class="ml-2 btn btn-outline-danger btn-sm">Excluir</button>
                         </td>
                     </tr>
                 </template>
@@ -40,6 +39,7 @@
 </template>
 
 <script>
+    import Swal from 'sweetalert2'
     const BASE_URL = "http://localhost:8000/api"
     export default {
         name: "ApiTable",
@@ -99,7 +99,40 @@
                 this.paginaAtual = pagina
 
                 this.carregarDados()
-            }
+            },
+            deletarRegistro(id) {
+                const vm = this
+                fetch(`${BASE_URL}/papeis/${id}`, {
+                    method: "delete",
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                })
+                    .then( (response) => {
+                        window.console.log(response)
+                        vm.carregarDados()
+                    });
+            },
+            confirmarExclusao(id) {
+                Swal.fire({
+                    title: 'Você tem certeza que deseja deletar?',
+                    text: 'Uma vez deletado jamais recuperado',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#71d644',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Sim',
+                    cancelButtonText: 'Não'
+                }).then((result) => {
+                    if (result.value) {
+                        this.deletarRegistro(id)
+                        Swal.fire('Sucesso', 'Operação realizada com sucesso', 'success')
+                    } else {
+                        Swal.fire('Cancelado', 'Operação cancelada com sucesso', 'error')
+                    }
+                })
+            },
         }
     }
 </script>

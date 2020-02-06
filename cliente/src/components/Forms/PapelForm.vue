@@ -18,6 +18,8 @@
 </template>
 
 <script>
+    import Swal from 'sweetalert2'
+
     const BASE_URL = "http://localhost:8000/api"
     const MODO_CRIACAO = "criacao"
     const MODO_EDICAO = "edicao"
@@ -25,7 +27,7 @@
         name: "PapelForm",
         props: {
             papelId: {
-                type: String,
+                type: Number,
                 default: null
             },
             modo: {
@@ -82,6 +84,10 @@
                 })
                     .then( (response) => {
                         window.console.log(response)
+
+                        Swal.fire('Papel criado com sucesso!', '', 'success')
+
+                        return this.$router.push({ name: 'papeis' })
                     });
             },
             editarPapel() {
@@ -97,6 +103,10 @@
                 })
                     .then( (response) => {
                         window.console.log(response)
+
+                        Swal.fire('Papel editado com sucesso!', '', 'success')
+
+                        return this.$router.push({ name: 'papeis' })
                     });
             },
             resgatarPapel() {
