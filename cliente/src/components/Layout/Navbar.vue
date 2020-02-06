@@ -5,25 +5,25 @@
                 <div class="row align-items-center">
                     <div class="col-lg order-lg-first">
                         <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
-                            <li class="nav-item active">
-                                <a class="nav-link active" href="#">
+                            <li class="nav-item">
+                                <router-link to="/" class="nav-link" exact-active-class="active">
                                     Página inicial
-                                </a>
+                                </router-link>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <router-link to="/papeis" class="nav-link" exact-active-class="active">
                                     Papéis
-                                </a>
+                                </router-link>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <router-link to="/projetos" class="nav-link" exact-active-class="active">
                                     Projetos
-                                </a>
+                                </router-link>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <router-link to="/usuarios" class="nav-link" exact-active-class="active">
                                     Usuários
-                                </a>
+                                </router-link>
                             </li>
                         </ul>
                     </div>

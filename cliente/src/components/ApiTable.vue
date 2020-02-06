@@ -1,12 +1,12 @@
 <template>
-
     <div class="table-responsive push">
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th :key="index" v-for="(chave, index) in chavesCabecalho">
-                        {{ chave }}
+                        {{ traducaoCampos.hasOwnProperty(chave) ? traducaoCampos[chave] : chave }}
                     </th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -14,6 +14,14 @@
                     <tr :key="item.id">
                         <td :key="index" v-for="(chave, index) in chavesCabecalho">
                             {{ item[chave] }}
+                        </td>
+                        <td>
+                            <router-link :to="{ name: 'papeis.edit', params: { id: item.id} }" class="btn btn-outline-warning btn-sm">
+                                Editar
+                            </router-link>
+                            <router-link to="/papeis/edit" class="ml-2 btn btn-outline-danger btn-sm">
+                                Excluir
+                            </router-link>
                         </td>
                     </tr>
                 </template>
@@ -45,6 +53,12 @@
             recurso: {
                 type: String,
                 required: true
+            },
+            traducaoCampos: {
+                type: Object,
+                default() {
+                    return {}
+                }
             }
         },
         data() {
@@ -72,14 +86,14 @@
         },
         methods: {
             carregarDados() {
-                const vm = this
-                fetch(`${BASE_URL}/${this.recurso}?page=${this.paginaAtual}`)
-                    .then(function(response) {
-                        response.json()
-                            .then(function (items) {
-                                vm.items = items
-                            })
-                    })
+                    const vm = this
+                    fetch(`${BASE_URL}/${this.recurso}?page=${this.paginaAtual}`)
+                        .then(function(response) {
+                            response.json()
+                                .then(function (items) {
+                                    vm.items = items
+                                })
+                        })
             },
             atribuirPaginaAtual(pagina) {
                 this.paginaAtual = pagina
