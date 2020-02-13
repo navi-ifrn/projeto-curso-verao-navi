@@ -1,39 +1,16 @@
 <template>
-    <div class="table-responsive push">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th :key="index" v-for="(chave, index) in chavesCabecalho">
-                        {{ traducaoCampos.hasOwnProperty(chave) ? traducaoCampos[chave] : chave }}
-                    </th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <template v-for="item in items.data">
-                    <tr :key="item.id">
-                        <td :key="index" v-for="(chave, index) in chavesCabecalho">
-                            {{ item[chave] }}
-                        </td>
-                        <td>
-                            <router-link :to="{ name: `${recurso}.edit`, params: { id: item.id} }" class="btn btn-outline-warning btn-sm">
-                                Editar
-                            </router-link>
-                            <button @click="confirmarExclusao(item.id)" class="ml-2 btn btn-outline-danger btn-sm">Excluir</button>
-                        </td>
-                    </tr>
-                </template>
-            </tbody>
-        </table>
-        <div class="d-flex justify-content-center">
-            <ul class="pagination">
-                <li :key="i" v-for="i in items.last_page" class="page-item" :class="{ active: i === paginaAtual}">
-                    <a href="javascript:void(0);" class="page-link" @click="atribuirPaginaAtual(i)">
-                        {{ i }}
-                    </a>
-                </li>
-            </ul>
-        </div>
+    <div class="row">
+        <template v-for="item in items.data">
+            <div :key="item.id" class="col-md-6 col-xl-4">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            {{ item.titulo }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
     </div>
 </template>
 
@@ -41,7 +18,7 @@
     import Swal from 'sweetalert2'
     const BASE_URL = "http://localhost:8000/api"
     export default {
-        name: "ApiTable",
+        name: "ApiCard",
         props: {
             camposExcluidos: {
                 type: Array,
@@ -85,14 +62,14 @@
         },
         methods: {
             carregarDados() {
-                    const vm = this
-                    fetch(`${BASE_URL}/${this.recurso}?page=${this.paginaAtual}`)
-                        .then(function(response) {
-                            response.json()
-                                .then(function (items) {
-                                    vm.items = items
-                                })
-                        })
+                const vm = this
+                fetch(`${BASE_URL}/${this.recurso}?page=${this.paginaAtual}`)
+                    .then(function(response) {
+                        response.json()
+                            .then(function (items) {
+                                vm.items = items
+                            })
+                    })
             },
             atribuirPaginaAtual(pagina) {
                 this.paginaAtual = pagina
